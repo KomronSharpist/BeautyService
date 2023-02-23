@@ -1,1 +1,24 @@
-﻿
+[
+  {
+    "Job": 0,
+    "Description": "kadmkwmdkawdmakwmdakw",
+    "ProfName": "kadmkwmdkawdmakwmdakw",
+    "ProfLastName": "kadmkwmdkawdmakwmdakw",
+    "Status": 1,
+    "Price": null,
+    "Id": 0,
+    "CreatedAt": "2023-02-23T10:02:11.3930163+05:00",
+    "UpdatedAt": "2023-02-23T05:04:49.4812454Z"
+  },
+  {
+    "Job": 0,
+    "Description": "akwdmkawmdkawmdkawmd awkm dkawmd aw",
+    "ProfName": "Komronbek",
+    "ProfLastName": "Sulaymonov",
+    "Status": 0,
+    "Price": null,
+    "Id": 0,
+    "CreatedAt": "2023-02-23T06:37:23.6972805Z",
+    "UpdatedAt": null
+  }
+]

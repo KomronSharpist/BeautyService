@@ -1,6 +1,6 @@
 ﻿namespace BeautyServices.Domain.Enums;
 
-public enum ProfessionTypes : byte
+public enum Jobs : byte
 {
     braids,
     cosmetolog,

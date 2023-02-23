@@ -1,11 +1,17 @@
-﻿using BeautyServices.Service.DTOs;
+﻿using BeautyServices.Domain.Entities;
+using BeautyServices.Domain.Enums;
+using BeautyServices.Service.DTOs;
+using BeautyServices.Service.Helpers;
 using BeautyServices.Service.Interfaces;
 using BeautyServices.Service.Services;
+using Newtonsoft.Json;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static BeautyService.Con.Pages.LoginOrRegistration;
 using static System.Console;
 
 namespace BeautyService.Con.Pages;
@@ -13,9 +19,12 @@ namespace BeautyService.Con.Pages;
 public class LoginOrRegistration
 {
     private IUserService userService = new UserService();
-
+    private IWorkerService workerService = new WorkerService();
+    private IOrderService orderService = new OrderService();
+    private UserDTo akkaunt = new UserDTo();
     public void Start()
     {
+        Clear();
         Console.WriteLine("1-Login\n2-Registration");
         int input = Convert.ToInt32(Console.ReadKey().Key);
 
@@ -28,10 +37,10 @@ public class LoginOrRegistration
             Start();
     }
 
-    private async void Registration()
+    public async void Registration()
     {
         var userDto = new UserDTo();
-
+        startFirst:
         WriteLine("First name: ");
         userDto.FirstName = ReadLine();
         WriteLine("Last name: ");
@@ -42,23 +51,31 @@ public class LoginOrRegistration
         userDto.Password = ReadLine();
         WriteLine("Email:");
         userDto.Email = ReadLine();
-
+        
         var response = await userService.CreateAsync(userDto);
 
-        if(response.StatusCode == 200)
+        akkaunt.FirstName = userDto.FirstName;
+        akkaunt.LastName = userDto.LastName;
+        akkaunt.Username = userDto.Username;
+        akkaunt.Password = userDto.Password;
+        akkaunt.Email = userDto.Email;
+
+        if (response.StatusCode == 200)
         {
             Clear();
-            WriteLine("Succes");
+            User();
         }
         else
         {
             Clear();
-            WriteLine("Username was taken! Press enter to continue.");
+            WriteLine("Username was taken!");
+            goto startFirst;
         }
     }
 
     private async void Login()
     {
+    startFirst:
         WriteLine("username: ");
         string username = ReadLine();
         WriteLine("password: ");
@@ -69,10 +86,82 @@ public class LoginOrRegistration
         if (response.StatusCode == 200)
         {
             WriteLine("Succes");
+            if (response.Value.userRole == RoleTypes.admin)
+            {
+                akkaunt.FirstName = response.Value.FirstName;
+                akkaunt.LastName = response.Value.LastName;
+                akkaunt.Username = response.Value.Username;
+                akkaunt.Password = response.Value.Password;
+                akkaunt.Email = response.Value.Email;
+                Admin();
+            }
+            else
+            {
+                User();
+            }
         }
         else
         {
             WriteLine("Username or Password is incorrect!");
+            goto startFirst;
         }
+    }
+
+    private async void Admin()
+    {
+        Clear();
+        start:
+        WriteLine("1-Get all workers\n2-Create new worker\n3-Get all orders\n4-Accaunt\n5-Get all users\n6-Get by id workers\n7-Get by id users\n8-Get by id orders");
+        int chose = int.Parse(ReadLine());
+        if(chose == 1)
+        {
+            Clear();
+            var result = await workerService.GetAllAsync(u => true);
+            foreach (var i in result.Value)
+            {
+                Write($"\n                    ID : {i.Id} ProfesorName : {i.ProfName} ProfesorLName : {i.ProfLastName}\n                    Description : {i.Description} Job : {i.Job} Status : {i.Status}\n");
+            }
+        }
+        if(chose == 2)
+        {
+            Clear();
+            WorkerService workerService = new WorkerService();
+            WorkerDTo worker = new WorkerDTo();
+            worker.job = Jobs.braids;
+            Write("Work description : ");
+            worker.Description = ReadLine();
+            Write("Profesor ismi : ");
+            worker.ProfName = ReadLine();
+            Write("Profesor familiyasi : ");
+            worker.ProfLastName = ReadLine();
+            Write("Work price : ");
+            worker.Price = ReadLine();
+            await workerService.CreateAsync(worker);
+            goto start;
+        }
+        if(chose == 3)
+        {
+            Clear();
+            var result = await orderService.GetAllAsync(u => true);
+            foreach (var i in result.Value)
+            {
+                Write($"\n                    ID : {i.Id} ProfesorName : {i.UserId} ProfesorLName : {i.WorkerId}\n                    Description : {i.Description} Status : {i.StatusType}\n");
+            }
+
+        }
+        if(chose == 4)
+        {
+            Clear();
+            WriteLine($"{akkaunt.Username}\n{akkaunt.Password}\n{akkaunt.FirstName}\n{akkaunt.LastName}\n{akkaunt.Email}\n\n1-Exit Accaunt");
+            if(int.Parse(ReadLine()) == 1)
+            {
+                Start();
+            }
+        }
+    }
+    private async void User()
+    {
+        Clear();
+        WriteLine("Siz User pagedasiz!");
     }
 }

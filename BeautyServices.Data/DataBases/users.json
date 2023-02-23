@@ -5,10 +5,10 @@
     "Username": "komron2005",
     "Password": "komronbek26",
     "Email": "komrondeveloper@gmail.com",
+    "userRole": 5,
     "Id": 0,
     "CreatedAt": "2023-02-23T05:10:21.1583177+05:00",
-    "UpdatedAt": null,
-    "userRole": 5
+    "UpdatedAt": null
   },
   {
     "FirstName": "Kamronbek",
@@ -16,9 +16,20 @@
     "Username": "admin",
     "Password": "admin",
     "Email": "admin#gmail.com",
+    "userRole": 10,
     "Id": 0,
     "CreatedAt": "2023-02-23T05:26:38.6796081+05:00",
-    "UpdatedAt": null,
-    "userRole": 10
+    "UpdatedAt": null
+  },
+  {
+    "FirstName": "oawdaowmdaw",
+    "LastName": "mawdnawwjfna",
+    "Username": "aanfjnajnfjas",
+    "Password": "ansjsfnajssnfa",
+    "Email": "asnjsfnajsnf",
+    "userRole": 5,
+    "Id": 0,
+    "CreatedAt": "2023-02-23T10:38:22.334395+05:00",
+    "UpdatedAt": null
   }
 ]

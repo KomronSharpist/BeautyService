@@ -8,5 +8,5 @@ public class Orders : Auditable
     public int UserId { get; set; }
     public int WorkerId { get; set; }
     public string Description { get; set; }
-    public OrderTypes StatusType { get; set; }
+    public OrderTypes StatusType { get; set; } = OrderTypes.ordered;
 }

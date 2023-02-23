@@ -94,7 +94,7 @@ public class GenericRepostory<TEntity> : IGenericRepostory<TEntity> where TEntit
 
         int index = models.IndexOf(modelUPDATE);
         models.Remove(modelUPDATE);
-        model.UpdatedAt = DateTime.Now;
+        model.UpdatedAt = DateTime.UtcNow;
         models.Insert(index, model);
 
         File.WriteAllText(Path, JsonConvert.SerializeObject(models, Formatting.Indented));

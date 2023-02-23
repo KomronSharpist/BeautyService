@@ -1,6 +1,7 @@
 ﻿using BeautyServices.Data.GenericRepostories;
 using BeautyServices.Data.IGenericRepostories;
 using BeautyServices.Domain.Entities;
+using BeautyServices.Domain.Enums;
 using BeautyServices.Service.Helpers;
 using BeautyServices.Service.Interfaces;
 
@@ -13,9 +14,9 @@ public class PlannerService : IPlannerService
     {
         PlannerRepo = new GenericRepostory<Planner>();
     }
-    public async Task<GenericResponce<Planner>> CreateAsync(long userId)
+    public async Task<GenericResponce<Planner>> CreateAsync(Workers worker, long plannerId)
     {
-        var Planner = (await PlannerRepo.GetAllAsync()).FirstOrDefault(c => c.Id == userId);
+        var Planner = (await PlannerRepo.GetAllAsync()).FirstOrDefault(c => c.Id == plannerId);
 
         if (Planner is not null)
             return new GenericResponce<Planner>
@@ -28,8 +29,9 @@ public class PlannerService : IPlannerService
         var result = await PlannerRepo.CreateAsync(new Planner
         {
             UserId = Planner.UserId,
-            CreatedAt = DateTime.Now,
-            Items = new List<Workers>()
+            statusType = OrderTypes.planned,
+            WorkerId = worker.Id,
+            CreatedAt = DateTime.Now
         });
 
         return new GenericResponce<Planner>
@@ -37,6 +39,29 @@ public class PlannerService : IPlannerService
             StatusCode = 200,
             Message = "Succes",
             Value = result
+        };
+    }
+
+    public async Task<GenericResponce<Planner>> DeleteAsync(long plannerId)
+    {
+        var Planner = (await PlannerRepo.GetAllAsync()).FirstOrDefault(c => c.Id == plannerId);
+        if(Planner is null)
+        {
+            return new GenericResponce<Planner>
+            {
+                StatusCode = 404,
+                Message = "Plan is not found",
+                Value = null
+            };
+        }
+
+        var result = PlannerRepo.DeleteAsync(Planner.Id);
+
+        return new GenericResponce<Planner>
+        {
+            StatusCode = 200,
+            Message = "Succes",
+            Value = Planner
         };
     }
 

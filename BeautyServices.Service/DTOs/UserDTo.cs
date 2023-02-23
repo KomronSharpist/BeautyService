@@ -1,4 +1,6 @@
-﻿namespace BeautyServices.Service.DTOs;
+﻿using BeautyServices.Domain.Enums;
+
+namespace BeautyServices.Service.DTOs;
 
 public class UserDTo
 {

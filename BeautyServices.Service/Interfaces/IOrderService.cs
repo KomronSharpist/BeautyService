@@ -6,7 +6,7 @@ namespace BeautyServices.Service.Interfaces;
 
 public interface IOrderService
 {
-    Task<GenericResponce<Orders>> CreateAsync(OrderDTo order);
+    Task<GenericResponce<Orders>> CreateAsync(OrderDTo order, long orderId);
     Task<GenericResponce<Orders>> DeleteAsync(long id);
     Task<GenericResponce<Orders>> UpdateAsync(long id, OrderDTo order);
     Task<GenericResponce<Orders>> GetAsync(long id);

@@ -5,9 +5,8 @@ namespace BeautyServices.Domain.Entities;
 
 public class Planner : Auditable
 {
-    public int UserId { get; set; }
-    public int WorkerId { get; set; }
+    public long UserId { get; set; }
+    public long WorkerId { get; set; }
     public string Description { get; set; }
-    public OrderTypes statusType { get; set; }
-    public List<Workers> Items { get; set; }
+    public OrderTypes statusType { get; set; } = OrderTypes.planned;
 }

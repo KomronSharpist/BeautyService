@@ -3,5 +3,6 @@
 public enum RoleTypes : byte
 {
     user = 5,
-    admin = 10  
+    worker = 7,
+    admin = 10
 }
