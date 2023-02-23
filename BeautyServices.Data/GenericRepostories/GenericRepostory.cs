@@ -11,7 +11,7 @@ namespace BeautyServices.Data.GenericRepostories;
 public class GenericRepostory<TEntity> : IGenericRepostory<TEntity> where TEntity : Auditable
 {
     private string Path;
-    private long lastID = 0;
+    private long lastID = 1;
 
     public GenericRepostory()
     {
@@ -35,7 +35,7 @@ public class GenericRepostory<TEntity> : IGenericRepostory<TEntity> where TEntit
     }
     public async Task<TEntity> CreateAsync(TEntity model)
     {
-        model.Id = lastID++;
+        model.Id = ++lastID;
         var models = await GetAllAsync();
         models.Add(model);
 

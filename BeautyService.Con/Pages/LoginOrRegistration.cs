@@ -158,10 +158,82 @@ public class LoginOrRegistration
                 Start();
             }
         }
+        if(chose == 5)
+        {
+            Clear();
+            var result = await userService.GetAllAsync(u => true);
+            foreach (var i in result.Value)
+            {
+                Write($"\n                    ID : {i.Id} FirstName : {i.FirstName} LastName : {i.LastName}\n                    Username : {i.Username} Password : {i.Password} Email : {i.Email}\n");
+            }
+        }
+        if(chose == 6)
+        {
+            Clear();
+            Write("Id kiriting : ");
+            var result = await workerService.GetAsync(int.Parse(ReadLine()));
+            WriteLine($"\n                    ID : {result.Value.Id} ProfesorName : {result.Value.ProfName} ProfesorLName : {result.Value.ProfLastName}\n                    Description : {result.Value.Description} Job : {result.Value.Job} Price : {result.Value.Price}\n");
+        }
+        if (chose == 7)
+        {
+            Clear();
+            Write("Id kiriting : ");
+            var result = await userService.GetAsync(int.Parse(ReadLine()));
+            WriteLine($"\n                    ID : {result.Value.Id} FirstName : {result.Value.FirstName} LastName : {result.Value.LastName}\n                    Username : {result.Value.Username} Password : {result.Value.Password} Email : {result.Value.Email}\n");
+        }
+        if (chose == 8)
+        {
+            Clear();
+            Write("Id kiriting : ");
+            var result = await orderService.GetAsync(int.Parse(ReadLine()));
+            WriteLine($"\n                    ID : {result.Value.Id} UserID : {result.Value.UserId} WorkerID : {result.Value.WorkerId}\n                    Description : {result.Value.Description} CreatedAT : {result.Value.CreatedAt}\n");
+        }
     }
     private async void User()
     {
         Clear();
-        WriteLine("Siz User pagedasiz!");
+        WriteLine("1-Akkaunt malumots\n2-Get all worker list\n3-Get by id worker\n4-Get Planned list\n5-Get all order list\n6-Get by id order\n7-Get history of orders\n");
+        int chose = int.Parse(ReadLine());
+        if(chose == 1)
+        {
+            Clear();
+            WriteLine($"{akkaunt.Username}\n{akkaunt.Password}\n{akkaunt.FirstName}\n{akkaunt.LastName}\n{akkaunt.Email}\n\n1-Exit Accaunt");
+            if (int.Parse(ReadLine()) == 1)
+            {
+                Start();
+            }
+        }
+        if(chose == 2)
+        {
+            Clear();
+            var result = await workerService.GetAllAsync(u => true);
+            foreach (var i in result.Value)
+            {
+                Write($"\n                    ID : {i.Id} ProfesorName : {i.ProfName} ProfesorLName : {i.ProfLastName}\n                    Description : {i.Description} Job : {i.Job} Status : {i.Status}\n");
+            }
+        }
+        if(chose == 3)
+        {
+            Clear();
+            Write("Id kiriting : ");
+            var result = await workerService.GetAsync(int.Parse(ReadLine()));
+            WriteLine($"\n                    ID : {result.Value.Id} ProfesorName : {result.Value.ProfName} ProfesorLName : {result.Value.ProfLastName}\n                    Description : {result.Value.Description} Job : {result.Value.Job} Price : {result.Value.Price}\n");
+        }
+        if (chose == 4)
+        {
+            Clear();
+        }
+        if(chose == 5)
+        {
+            Clear();
+        }
+        if(chose == 6)
+        {
+            Clear();
+        }
+        if(chose == 7)
+        {
+            Clear();
+        }
     }
 }
