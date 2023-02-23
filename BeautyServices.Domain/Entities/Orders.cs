@@ -5,8 +5,8 @@ namespace BeautyServices.Domain.Entities;
 
 public class Orders : Auditable
 {
-    public int UserId { get; set; }
-    public int WorkerId { get; set; }
+    public long UserId { get; set; }
+    public long WorkerId { get; set; }
     public string Description { get; set; }
     public OrderTypes StatusType { get; set; } = OrderTypes.ordered;
 }
