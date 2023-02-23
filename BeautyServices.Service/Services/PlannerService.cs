@@ -9,8 +9,8 @@ namespace BeautyServices.Service.Services;
 
 public class PlannerService : IPlannerService
 {
-    private IGenericRepostory<Planner> PlannerRepo;
-    public void PlannerService()
+    private readonly IGenericRepostory<Planner> PlannerRepo;
+    public PlannerService()
     {
         PlannerRepo = new GenericRepostory<Planner>();
     }
@@ -45,7 +45,7 @@ public class PlannerService : IPlannerService
     public async Task<GenericResponce<Planner>> DeleteAsync(long plannerId)
     {
         var Planner = (await PlannerRepo.GetAllAsync()).FirstOrDefault(c => c.Id == plannerId);
-        if (Planner is null)
+        if(Planner is null)
         {
             return new GenericResponce<Planner>
             {

@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeautyService.Con", "BeautyService.Con\BeautyService.Con.csproj", "{B4A25BB7-D6E5-4F5B-874B-382BD6344F1E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeautyService.Presentation", "BeautyService.Con\BeautyService.Presentation.csproj", "{B4A25BB7-D6E5-4F5B-874B-382BD6344F1E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeautyServices.Domain", "BeautyServices.Domain\BeautyServices.Domain.csproj", "{380223BC-FE65-4BA6-AAC6-A7955D0A5A0A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeautyServices.Domain", "BeautyServices.Domain\BeautyServices.Domain.csproj", "{380223BC-FE65-4BA6-AAC6-A7955D0A5A0A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeautyServices.Data", "BeautyServices.Data\BeautyServices.Data.csproj", "{D970FDD9-2997-4757-9127-AD0C2FAAAA9D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeautyServices.Data", "BeautyServices.Data\BeautyServices.Data.csproj", "{D970FDD9-2997-4757-9127-AD0C2FAAAA9D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeautyServices.Service", "BeautyServices.Service\BeautyServices.Service.csproj", "{A4647893-9A26-4AA8-9BAD-5E10F636461A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeautyServices.Service", "BeautyServices.Service\BeautyServices.Service.csproj", "{A4647893-9A26-4AA8-9BAD-5E10F636461A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

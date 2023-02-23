@@ -3,6 +3,7 @@ using BeautyServices.Data.IGenericRepostories;
 using BeautyServices.Domain.Commons;
 using BeautyServices.Domain.Entities;
 using Newtonsoft.Json;
+using System.Xml;
 using Formatting = Newtonsoft.Json.Formatting;
 
 namespace BeautyServices.Data.GenericRepostories;
@@ -52,7 +53,7 @@ public class GenericRepostory<TEntity> : IGenericRepostory<TEntity> where TEntit
         {
             return false;
         }
-
+        
         models.Remove(model);
         File.WriteAllText(Path, JsonConvert.SerializeObject(models, Formatting.Indented));
 

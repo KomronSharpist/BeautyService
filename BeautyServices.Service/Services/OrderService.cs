@@ -74,8 +74,8 @@ public class OrderService : IOrderService
 
     public async Task<GenericResponce<Orders>> GetAsync(long id)
     {
-        var order = (await ordersRepository.GetAllAsync()).FirstOrDefault(o => o.Id == id);
-        if (order is null)
+        var order = (await ordersRepository.GetAllAsync()).FirstOrDefault(o=> o.Id == id);
+        if(order is null)
         {
             return new GenericResponce<Orders>()
             {
@@ -95,8 +95,8 @@ public class OrderService : IOrderService
 
     public async Task<GenericResponce<Orders>> UpdateAsync(long id, OrderDTo order)
     {
-        var orderUpdate = (await ordersRepository.GetAllAsync()).FirstOrDefault(o => o.Id == id);
-        if (orderUpdate is null)
+        var orderUpdate = (await ordersRepository.GetAllAsync()).FirstOrDefault(o=> o.Id == id);
+        if(orderUpdate is null)
         {
             return new GenericResponce<Orders>()
             {
@@ -110,8 +110,8 @@ public class OrderService : IOrderService
         orderUpdate.Description = order.Description;
         orderUpdate.StatusType = order.StatusType;
         orderUpdate.UserId = order.UserId;
-        orderUpdate.WorkerId = order.WorkerId;
-
+        orderUpdate.WorkerId= order.WorkerId;
+        
         var result = await ordersRepository.UpdateAsync(orderUpdate);
 
         return new GenericResponce<Orders>()

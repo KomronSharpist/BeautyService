@@ -1,9 +1,15 @@
 ﻿using BeautyServices.Data.GenericRepostories;
 using BeautyServices.Data.IGenericRepostories;
 using BeautyServices.Domain.Entities;
+using BeautyServices.Domain.Enums;
 using BeautyServices.Service.DTOs;
 using BeautyServices.Service.Helpers;
 using BeautyServices.Service.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace BeautyServices.Service.Services;
 
@@ -18,7 +24,7 @@ public class WorkerService : IWorkerService
     {
         var WorkerCreate = (await workerRepository.GetAllAsync()).FirstOrDefault(c => c.ProfName == worker.ProfName);
 
-        if (WorkerCreate is not null)
+        if(WorkerCreate is not null)
         {
             return new GenericResponce<Workers>
             {
@@ -51,8 +57,8 @@ public class WorkerService : IWorkerService
     public async Task<GenericResponce<Workers>> DeleteAsync(long id)
     {
         var Worker = (await workerRepository.GetAllAsync()).FirstOrDefault(c => c.Id == id);
-
-        if (Worker is null)
+        
+        if(Worker is null)
         {
             return new GenericResponce<Workers>
             {
@@ -88,7 +94,7 @@ public class WorkerService : IWorkerService
     {
         var worker = (await workerRepository.GetAllAsync()).FirstOrDefault(w => w.Id == id);
 
-        if (worker is null)
+        if(worker is null)
         {
             return new GenericResponce<Workers>
             {
@@ -110,7 +116,7 @@ public class WorkerService : IWorkerService
     {
         var workerUpdate = (await workerRepository.GetAllAsync()).FirstOrDefault(w => w.Id == id);
 
-        if (workerUpdate is null)
+        if(workerUpdate is null)
         {
             return new GenericResponce<Workers>
             {
@@ -131,7 +137,7 @@ public class WorkerService : IWorkerService
 
         return new GenericResponce<Workers>
         {
-            StatusCode = 200,
+            StatusCode= 200,
             Message = "Succes",
             Value = result
         };

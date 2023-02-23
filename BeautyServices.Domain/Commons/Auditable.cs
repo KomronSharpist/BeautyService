@@ -1,4 +1,6 @@
-﻿namespace BeautyServices.Domain.Commons;
+﻿using BeautyServices.Domain.Enums;
+
+namespace BeautyServices.Domain.Commons;
 
 public class Auditable
 {
