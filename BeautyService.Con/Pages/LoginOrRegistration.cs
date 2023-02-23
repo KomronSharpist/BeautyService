@@ -1,17 +1,7 @@
-﻿using BeautyServices.Domain.Entities;
-using BeautyServices.Domain.Enums;
+﻿using BeautyServices.Domain.Enums;
 using BeautyServices.Service.DTOs;
-using BeautyServices.Service.Helpers;
 using BeautyServices.Service.Interfaces;
 using BeautyServices.Service.Services;
-using Newtonsoft.Json;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static BeautyService.Con.Pages.LoginOrRegistration;
 using static System.Console;
 
 namespace BeautyService.Con.Pages;
@@ -21,6 +11,7 @@ public class LoginOrRegistration
     private IUserService userService = new UserService();
     private IWorkerService workerService = new WorkerService();
     private IOrderService orderService = new OrderService();
+    private IPlannerService plannerService = new PlannerService();
     private UserDTo akkaunt = new UserDTo();
     public void Start()
     {
@@ -40,7 +31,7 @@ public class LoginOrRegistration
     public async void Registration()
     {
         var userDto = new UserDTo();
-        startFirst:
+    startFirst:
         WriteLine("First name: ");
         userDto.FirstName = ReadLine();
         WriteLine("Last name: ");
@@ -51,7 +42,7 @@ public class LoginOrRegistration
         userDto.Password = ReadLine();
         WriteLine("Email:");
         userDto.Email = ReadLine();
-        
+
         var response = await userService.CreateAsync(userDto);
 
         akkaunt.FirstName = userDto.FirstName;
@@ -110,10 +101,10 @@ public class LoginOrRegistration
     private async void Admin()
     {
         Clear();
-        start:
+    start:
         WriteLine("1-Get all workers\n2-Create new worker\n3-Get all orders\n4-Accaunt\n5-Get all users\n6-Get by id workers\n7-Get by id users\n8-Get by id orders");
         int chose = int.Parse(ReadLine());
-        if(chose == 1)
+        if (chose == 1)
         {
             Clear();
             var result = await workerService.GetAllAsync(u => true);
@@ -122,7 +113,7 @@ public class LoginOrRegistration
                 Write($"\n                    ID : {i.Id} ProfesorName : {i.ProfName} ProfesorLName : {i.ProfLastName}\n                    Description : {i.Description} Job : {i.Job} Status : {i.Status}\n");
             }
         }
-        if(chose == 2)
+        if (chose == 2)
         {
             Clear();
             WorkerService workerService = new WorkerService();
@@ -139,7 +130,7 @@ public class LoginOrRegistration
             await workerService.CreateAsync(worker);
             goto start;
         }
-        if(chose == 3)
+        if (chose == 3)
         {
             Clear();
             var result = await orderService.GetAllAsync(u => true);
@@ -149,16 +140,16 @@ public class LoginOrRegistration
             }
 
         }
-        if(chose == 4)
+        if (chose == 4)
         {
             Clear();
             WriteLine($"{akkaunt.Username}\n{akkaunt.Password}\n{akkaunt.FirstName}\n{akkaunt.LastName}\n{akkaunt.Email}\n\n1-Exit Accaunt");
-            if(int.Parse(ReadLine()) == 1)
+            if (int.Parse(ReadLine()) == 1)
             {
                 Start();
             }
         }
-        if(chose == 5)
+        if (chose == 5)
         {
             Clear();
             var result = await userService.GetAllAsync(u => true);
@@ -167,7 +158,7 @@ public class LoginOrRegistration
                 Write($"\n                    ID : {i.Id} FirstName : {i.FirstName} LastName : {i.LastName}\n                    Username : {i.Username} Password : {i.Password} Email : {i.Email}\n");
             }
         }
-        if(chose == 6)
+        if (chose == 6)
         {
             Clear();
             Write("Id kiriting : ");
@@ -192,9 +183,9 @@ public class LoginOrRegistration
     private async void User()
     {
         Clear();
-        WriteLine("1-Akkaunt malumots\n2-Get all worker list\n3-Get by id worker\n4-Get Planned list\n5-Get all order list\n6-Get by id order\n7-Get history of orders\n");
+        WriteLine("1-Akkaunt malumot\n2-Get all worker list\n3-Get by id worker\n4-Get Planned list\n5-Get all order list\n6-Get by id order\n7-Get history of orders\n");
         int chose = int.Parse(ReadLine());
-        if(chose == 1)
+        if (chose == 1)
         {
             Clear();
             WriteLine($"{akkaunt.Username}\n{akkaunt.Password}\n{akkaunt.FirstName}\n{akkaunt.LastName}\n{akkaunt.Email}\n\n1-Exit Accaunt");
@@ -202,8 +193,9 @@ public class LoginOrRegistration
             {
                 Start();
             }
+            else User();
         }
-        if(chose == 2)
+        if (chose == 2)
         {
             Clear();
             var result = await workerService.GetAllAsync(u => true);
@@ -212,7 +204,7 @@ public class LoginOrRegistration
                 Write($"\n                    ID : {i.Id} ProfesorName : {i.ProfName} ProfesorLName : {i.ProfLastName}\n                    Description : {i.Description} Job : {i.Job} Status : {i.Status}\n");
             }
         }
-        if(chose == 3)
+        if (chose == 3)
         {
             Clear();
             Write("Id kiriting : ");
@@ -223,15 +215,15 @@ public class LoginOrRegistration
         {
             Clear();
         }
-        if(chose == 5)
+        if (chose == 5)
         {
             Clear();
         }
-        if(chose == 6)
+        if (chose == 6)
         {
             Clear();
         }
-        if(chose == 7)
+        if (chose == 7)
         {
             Clear();
         }
