@@ -9,5 +9,5 @@ public class Workers : Auditable
     public string Description { get; set; }
     public string ProfName { get; set; }
     public string ProfLastName { get; set; }
-    public WorkerStatusType Status { get; set; }
+    public WorkerStatusTypes Status { get; set; }
 }

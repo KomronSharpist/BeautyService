@@ -1,4 +1,6 @@
-﻿namespace BeautyServices.Service.DTOs;
+﻿using BeautyServices.Domain.Enums;
+
+namespace BeautyServices.Service.DTOs;
 
 public class WorkerDTo
 {
@@ -6,5 +8,5 @@ public class WorkerDTo
     public string Description { get; set; }
     public string ProfName { get; set; }
     public string ProfLastName { get; set; }
-    public WorkerStatusType Status { get; set; }
+    public WorkerStatusTypes Status { get; set; }
 }

@@ -9,5 +9,4 @@ public interface IPlannerService
     Task<GenericResponce<Planner>> UpdateAsync(Planner cart);
     Task<GenericResponce<Planner>> GetAsync(long userId);
     Task<GenericResponce<List<Planner>>> GetAllAsync(Predicate<Planner> predicate);
-    Task<GenericResponce<decimal>> GetTotalPriceAsync(Planner cart);
 }
